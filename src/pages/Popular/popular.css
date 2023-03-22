@@ -1,4 +1,4 @@
-.popular-shoes {
+.sneaker-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,30 +7,10 @@
   margin-bottom: 20px;
 }
 
-.shoes-container {
+.sneaker-container {
   display: flex;
   flex-direction: row;
   gap: 24px;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-.shoes-container--item {
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
-  background-color: #fff;
-  align-items: center;
-  padding: 20px;
-}
-
-.shoes-item--button-container {
-  display: flex;
-  gap: 10px;
-  text-align: center;
-}
-
-.shoes-item--price--container > a {
-  background: #000;
-  color: #fff;
 }

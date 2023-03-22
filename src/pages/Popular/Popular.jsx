@@ -5,9 +5,9 @@ function Popular() {
   const { data, isLoading } = usePopularSneakers();
 
   return (
-    <div className="popular-shoes">
+    <div className="sneaker-wrapper">
       <h2>Popular Items</h2>
-      <div className="shoes-container">
+      <div className="sneaker-container">
         {!!data &&
           data.map((item) => {
             return (
@@ -20,41 +20,6 @@ function Popular() {
                 prices={item.lowestResellPrice}
                 links={item.resellLinks}
               />
-              // <div className="shoes-container--item" key={item._id}>
-              //   <h3>{item.shoeName}</h3>
-              //   <img
-              //     width={300}
-              //     src={item.thumbnail}
-              //     alt={`image of ${item.shoeName}`}
-              //   />
-              //   <div className="shoes-item--button-container">
-              //     {item.lowestResellPrice?.stockX && (
-              //       <div className="shoes-item--price--container">
-              //         <p>${item.lowestResellPrice?.stockX}</p>
-              //         <a
-              //           className="btn"
-              //           target="_blank"
-              //           href={item.resellLinks.stockX}
-              //         >
-              //           StockX
-              //         </a>
-              //       </div>
-              //     )}
-
-              //     {item.lowestResellPrice?.goat && (
-              //       <div className="shoes-item--price--container">
-              //         <p>${item.lowestResellPrice?.goat}</p>
-              //         <a
-              //           className="btn"
-              //           target="_blank"
-              //           href={item.resellLinks.goat}
-              //         >
-              //           Goat
-              //         </a>
-              //       </div>
-              //     )}
-              //   </div>
-              // </div>
             );
           })}
       </div>
