@@ -5,7 +5,7 @@ function Popular() {
 
   return (
     <div className="popular-shoes">
-      <h2>Popular Shoes </h2>
+      <h2>Popular Items</h2>
 
       <div className="shoes-container">
         {!!data &&
@@ -18,22 +18,6 @@ function Popular() {
                   src={item.thumbnail}
                   alt={`image of ${item.shoeName}`}
                 />
-                {/* <div className="shoes-item-prices--container">
-                  <p>Retail: ${item.retailPrice}</p>
-                  <p>
-                    StockX:{" "}
-                    {item.lowestResellPrice?.stockX
-                      ? `$${item.lowestResellPrice?.stockX}`
-                      : "Sold out"}
-                  </p>
-
-                  <p>
-                    Goat:{" "}
-                    {item.lowestResellPrice?.goat
-                      ? `$${item.lowestResellPrice?.goat}`
-                      : "Sold out"}
-                  </p>
-                </div> */}
                 <div className="shoes-item--button-container">
                   {item.lowestResellPrice?.stockX && (
                     <div className="shoes-item--price--container">

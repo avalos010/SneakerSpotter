@@ -15,7 +15,7 @@ function Hero() {
         at right now!
       </p>
       <Link className="btn" to="/popular">
-        Explore Sneakers
+        Explore
       </Link>
     </div>
   );
