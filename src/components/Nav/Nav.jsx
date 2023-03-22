@@ -1,10 +1,17 @@
 import Logo from "../../assets/logo.png";
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import "./nav.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 function Nav() {
   const [showMobileNaw, setShowMobileNav] = useState(false);
+  const navigate = useNavigate();
+
+  function handleSearch(e) {
+    e.preventDefault();
+    navigate(`/sneakers/${e.target[0].value}`);
+    e.target[0].value = "";
+  }
 
   return (
     <nav className="navigation-menu">
@@ -38,7 +45,11 @@ function Nav() {
         <li>
           <Link to="/sneakers/adidas">Adidas</Link>
         </li>
-        {/* <li>Search</li> */}
+        <li>
+          <form onSubmit={handleSearch}>
+            <input className="search-input" type="text" />
+          </form>
+        </li>
 
         <img width={80} src={Logo} alt="logo of shoes" />
       </ul>
