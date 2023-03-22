@@ -2,7 +2,7 @@ import hero from "../../assets/hero.png";
 import "./hero.css";
 function Hero() {
   return (
-    <div className="inner-hero-container">
+    <div className="inner-hero-container inner-gradient">
       <header className="inner-hero-container--header">
         <h1>Sneaker Spotter</h1>
       </header>

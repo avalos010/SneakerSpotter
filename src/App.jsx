@@ -5,15 +5,12 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Popular from "./pages/Popular/Popular";
 function App() {
-  const pop = usePopularSneakers();
-
-  console.log(pop);
   return (
     <div className="app">
       <Nav />
       <Routes>
-        <Route path="/" Component={Home} />
-        <Route path="/popular" Component={Popular} />
+        <Route path="/" element={<Home />} />
+        <Route path="/popular" element={<Popular />} />
       </Routes>
     </div>
   );
