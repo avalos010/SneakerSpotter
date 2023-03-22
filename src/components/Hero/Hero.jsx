@@ -1,5 +1,6 @@
 import hero from "../../assets/hero.png";
 import "./hero.css";
+import { Link } from "react-router-dom";
 function Hero() {
   return (
     <div className="inner-hero-container inner-gradient">
@@ -13,7 +14,9 @@ function Hero() {
         Search for all kinds of sneakers and find out where they are available
         at right now!
       </p>
-      <button className="">Explore Sneakers</button>
+      <Link className="btn" to="/popular">
+        Explore Sneakers
+      </Link>
     </div>
   );
 }

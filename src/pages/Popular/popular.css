@@ -4,4 +4,22 @@
   align-items: center;
   justify-content: center;
   animation: slideInFade 0.4s ease-in;
+  margin-bottom: 20px;
+}
+
+.shoes-container {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.shoes-container--item {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  align-items: center;
+  padding: 20px;
 }

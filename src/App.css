@@ -31,14 +31,23 @@ button:active {
   transform: scale(0.8);
 }
 
-button {
+button,
+.btn {
   border: none;
   min-width: 100px;
   padding: 10px;
   margin-top: 20px;
   box-shadow: 0 4px 3px 1px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: #000;
+}
 @media (min-width: 768px) {
   .inner-gradient {
     height: 85vh;

@@ -18,6 +18,22 @@ function Popular() {
                   src={item.thumbnail}
                   alt={`image of ${item.shoeName}`}
                 />
+                <div className="shoes-item-prices--container">
+                  <p>Retail: ${item.retailPrice}</p>
+                  <p>
+                    StockX:{" "}
+                    {item.lowestResellPrice?.stockX
+                      ? `$${item.lowestResellPrice?.stockX}`
+                      : "Sold out"}
+                  </p>
+
+                  <p>
+                    Goat:{" "}
+                    {item.lowestResellPrice?.goat
+                      ? `$${item.lowestResellPrice?.goat}`
+                      : "Sold out"}
+                  </p>
+                </div>
               </div>
             );
           })}
