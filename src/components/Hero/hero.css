@@ -17,6 +17,11 @@
   text-align: center;
 }
 
+.btn {
+  background: #000;
+  color: #fff !important;
+}
+
 @media (min-width: 767px) {
   .inner-hero-container > img {
     max-width: 100%;

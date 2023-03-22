@@ -29,10 +29,16 @@ function Nav() {
         <li>
           <Link to="/popular">Popular</Link>
         </li>
-        <li>Nike</li>
-        <li>Jordans</li>
-        <li>Adidas</li>
-        <li>Search</li>
+        <li>
+          <Link to="/sneakers/nike">Nike</Link>
+        </li>
+        <li>
+          <Link to="/sneakers/jordan">Jordans</Link>
+        </li>
+        <li>
+          <Link to="/sneakers/adidas">Adidas</Link>
+        </li>
+        {/* <li>Search</li> */}
 
         <img width={80} src={Logo} alt="logo of shoes" />
       </ul>
