@@ -24,6 +24,9 @@ h5 {
   font-family: "Poppins", sans-serif;
 }
 
+h2 {
+  font-size: 24px;
+}
 button:active {
   transform: scale(0.8);
 }
@@ -33,6 +36,7 @@ button {
   min-width: 100px;
   padding: 10px;
   margin-top: 20px;
+  box-shadow: 0 4px 3px 1px rgba(0, 0, 0, 0.1);
 }
 
 /* Animations here */

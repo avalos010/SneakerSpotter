@@ -13,7 +13,7 @@ function Hero() {
         Search for all kinds of sneakers and find out where they are available
         at right now!
       </p>
-      <button className="">Explore</button>
+      <button className="">Explore Sneakers</button>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import Logo from "../../assets/logo.png";
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import "./nav.css";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 function Nav() {
   const [showMobileNaw, setShowMobileNav] = useState(false);
@@ -22,9 +23,16 @@ function Nav() {
             : "navigation-menu--links-hide"
         }`}
       >
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/popular">Popular</Link>
+        </li>
         <li>Nike</li>
         <li>Jordans</li>
         <li>Adidas</li>
+        <li>Search</li>
 
         <img width={80} src={Logo} alt="logo of shoes" />
       </ul>
