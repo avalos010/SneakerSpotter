@@ -1,0 +1,37 @@
+.navigation-menu {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-content: center;
+}
+
+.navigation-menu--mobile {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+}
+
+.navigation-menu--mobile > img {
+  width: 100px;
+  margin: auto;
+}
+
+.navigation-menu--links {
+  position: absolute;
+  height: 100vh;
+  background: radial-gradient(#c7ad9f 25%, #bac8c9);
+  box-shadow: 0px 1px 6px 3px rgba(0, 0, 0, 0.1);
+  margin-top: 75px;
+  width: 40%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  gap: 15px;
+}
+
+.navigation-menu--icon {
+  width: 50px;
+  margin: 20px;
+}

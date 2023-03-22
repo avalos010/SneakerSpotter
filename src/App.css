@@ -1,0 +1,19 @@
+.app {
+  height: 100vh;
+  background: linear-gradient(to right, #c7ad9f 20%, #bac8c9);
+  display: flex;
+  flex-direction: column;
+  margin: -8px;
+}
+
+/* For Nav Menu  */
+
+@media (min-width: 768px) {
+  .inner-hero-container {
+    height: 90vh;
+    width: 90%;
+    background: radial-gradient(#c7ad9f 40%, #bac8c9);
+    box-shadow: 0px 1px 6px 3px rgba(0, 0, 0, 0.3);
+    margin: auto;
+  }
+}
