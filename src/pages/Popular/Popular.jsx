@@ -18,7 +18,7 @@ function Popular() {
                   src={item.thumbnail}
                   alt={`image of ${item.shoeName}`}
                 />
-                <div className="shoes-item-prices--container">
+                {/* <div className="shoes-item-prices--container">
                   <p>Retail: ${item.retailPrice}</p>
                   <p>
                     StockX:{" "}
@@ -33,6 +33,33 @@ function Popular() {
                       ? `$${item.lowestResellPrice?.goat}`
                       : "Sold out"}
                   </p>
+                </div> */}
+                <div className="shoes-item--button-container">
+                  {item.lowestResellPrice?.stockX && (
+                    <div className="shoes-item--price--container">
+                      <p>${item.lowestResellPrice?.stockX}</p>
+                      <a
+                        className="btn"
+                        target="_blank"
+                        href={item.resellLinks.stockX}
+                      >
+                        StockX
+                      </a>
+                    </div>
+                  )}
+
+                  {item.lowestResellPrice?.goat && (
+                    <div className="shoes-item--price--container">
+                      <p>${item.lowestResellPrice?.goat}</p>
+                      <a
+                        className="btn"
+                        target="_blank"
+                        href={item.resellLinks.goat}
+                      >
+                        Goat
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
             );
