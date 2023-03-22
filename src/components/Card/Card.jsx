@@ -1,0 +1,31 @@
+import "./card.css";
+function Card({ name, imgUrl, hasStockX, hasGoat, prices, links }) {
+  return (
+    <div className="card-container--item">
+      <h3>{name}</h3>
+      <img width={300} src={imgUrl} alt={`image of ${name}`} />
+
+      <div className="card-item--button-container">
+        {hasStockX && (
+          <div className="card-item--price--container">
+            <p>${prices.stockX}</p>
+            <a className="btn" target="_blank" href={links.stockX}>
+              StockX
+            </a>
+          </div>
+        )}
+
+        {hasGoat && (
+          <div className="card-item--price--container">
+            <p>${prices.goat}</p>
+            <a className="btn" target="_blank" href={links.goat}>
+              Goat
+            </a>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default Card;

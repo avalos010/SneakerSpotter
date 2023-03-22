@@ -1,0 +1,25 @@
+.card-container--item {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  align-items: center;
+  padding: 20px;
+}
+
+.card-item--button-container {
+  display: flex;
+  gap: 10px;
+  text-align: center;
+}
+
+.card-item--price--container {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+
+.card-item--price--container > a {
+  background: #000;
+  color: #fff;
+}

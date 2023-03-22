@@ -1,9 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+body {
+  background: linear-gradient(to right, #c7ad9f 20%, #b1d4e0);
+}
 .app {
   min-height: 100vh;
-  background: linear-gradient(to right, #c7ad9f 20%, #b1d4e0);
   display: flex;
   flex-direction: column;
+  max-width: 1366px;
+  margin: auto;
 }
 
 * {
