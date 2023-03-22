@@ -1,7 +1,7 @@
 import "./card.css";
 function Card({ name, imgUrl, hasStockX, hasGoat, prices, links }) {
   return (
-    <div className="card-container--item">
+    <div className="card-container--item animate-slideInFade">
       <h3>{name}</h3>
       <img width={300} src={imgUrl} alt={`image of ${name}`} />
 

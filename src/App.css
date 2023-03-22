@@ -60,6 +60,10 @@ a:visited {
   }
 }
 
+.animate-slideInFade {
+  animation: slideInFade 0.4s ease-in;
+}
+
 /* Animations here */
 
 @keyframes fadeinShoes {
