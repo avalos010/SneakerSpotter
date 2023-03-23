@@ -1,17 +1,16 @@
 import Logo from "../../assets/logo.png";
-import { Bars3Icon } from "@heroicons/react/24/solid";
+import { Bars3Icon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import "./nav.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
+import SearchOverlay from "../SearchOverlay/SearchOverlay";
 function Nav() {
   const [showMobileNaw, setShowMobileNav] = useState(false);
-  const navigate = useNavigate();
-
-  function handleSearch(e) {
-    e.preventDefault();
-    navigate(`/sneakers/${e.target[0].value}`);
-    e.target[0].value = "";
-  }
+  const [showSearchOverlay, setShowSearchOverlay] = useState(false);
+  const closeOverlay = () => {
+    setShowSearchOverlay(false);
+    setShowMobileNav(false);
+  };
 
   return (
     <nav className="navigation-menu">
@@ -46,13 +45,16 @@ function Nav() {
           <Link to="/sneakers/adidas">Adidas</Link>
         </li>
         <li>
-          <form onSubmit={handleSearch}>
-            <input className="search-input" type="text" />
-          </form>
+          <MagnifyingGlassIcon
+            className="magnifying-glass-icon"
+            onClick={() => setShowSearchOverlay(true)}
+          />
         </li>
 
         <img width={80} src={Logo} alt="logo of shoes" />
       </ul>
+
+      {showSearchOverlay && <SearchOverlay closeOverlay={closeOverlay} />}
     </nav>
   );
 }

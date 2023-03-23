@@ -81,3 +81,12 @@
     transform: translateX(0);
   }
 }
+
+.magnifying-glass-icon {
+  width: 30px;
+}
+
+.magnifying-glass-icon:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}

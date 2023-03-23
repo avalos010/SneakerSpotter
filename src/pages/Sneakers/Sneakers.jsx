@@ -8,7 +8,7 @@ function Sneakers() {
 
   return (
     <div className="sneaker-wrapper">
-      <h2>{brand.toUpperCase()}</h2>
+      <h2 className="animate-fadein">{brand.toUpperCase()}</h2>
       {isLoading && <h3>Loading...</h3>}
       {data?.error && <h3>Product Not Found</h3>}
       <div className="sneaker-container">
