@@ -5,6 +5,7 @@
   background-color: #fff;
   align-items: center;
   padding: 20px;
+  flex: 1 1 0px;
 }
 
 .card-item--button-container {

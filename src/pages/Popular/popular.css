@@ -8,8 +8,8 @@
 
 .sneaker-container {
   display: flex;
-  flex-direction: row;
   gap: 24px;
-  flex-wrap: wrap;
   justify-content: center;
+  padding: 20px;
+  flex-wrap: wrap;
 }

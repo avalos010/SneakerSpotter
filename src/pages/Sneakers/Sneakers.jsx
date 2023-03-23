@@ -10,8 +10,10 @@ function Sneakers() {
     <div className="sneaker-wrapper">
       <h2>{brand.toUpperCase()}</h2>
       {isLoading && <h3>Loading...</h3>}
+      {data?.error && <h3>Product Not Found</h3>}
       <div className="sneaker-container">
         {!!data &&
+          !data.error &&
           data.map((item) => {
             return (
               <Card
