@@ -28,4 +28,7 @@
   .inner-hero-container > img {
     max-width: 100%;
   }
+  .inner-hero-container {
+    padding-bottom: 20px;
+  }
 }
