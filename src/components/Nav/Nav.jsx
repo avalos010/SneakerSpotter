@@ -23,6 +23,7 @@ function Nav() {
       </div>
 
       <ul
+        onClick={() => setShowMobileNav(false)}
         className={`navigation-menu--links  ${
           showMobileNaw
             ? "navigation-menu--links-show"

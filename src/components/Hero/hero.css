@@ -8,8 +8,9 @@
 }
 
 .inner-hero-container > img {
-  transform: rotate(20deg);
   animation: fadeinShoes 0.8s linear;
+  margin: auto;
+  max-width: 100%;
 }
 
 .inner-hero-container > p {
