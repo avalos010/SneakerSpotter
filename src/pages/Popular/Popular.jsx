@@ -1,12 +1,14 @@
 import "./popular.css";
 import usePopularSneakers from "../../hooks/usePopularSneakers";
 import Card from "../../components/Card/Card";
+import Spinner from "../../components/Spinner/Spinner";
 function Popular() {
   const { data, isLoading } = usePopularSneakers();
 
   return (
     <div className="sneaker-wrapper">
       <h2>Popular Items</h2>
+      {isLoading && <Spinner />}
       <div className="sneaker-container">
         {!!data &&
           data.map((item) => {

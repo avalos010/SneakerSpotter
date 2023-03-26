@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import useSearchSneakers from "../../hooks/useSearchSneakers";
 import Card from "../../components/Card/Card";
+import Spinner from "../../components/Spinner/Spinner";
 
 function Sneakers() {
   const { brand } = useParams();
@@ -9,7 +10,7 @@ function Sneakers() {
   return (
     <div className="sneaker-wrapper">
       <h2 className="animate-fadein">{brand.toUpperCase()}</h2>
-      {isLoading && <h3>Loading...</h3>}
+      {isLoading && <Spinner />}
       {data?.error && <h3>Product Not Found</h3>}
       <div className="sneaker-container">
         {!!data &&
