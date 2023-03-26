@@ -3,7 +3,6 @@ body {
   background: linear-gradient(to right, #c7ad9f 20%, #b1d4e0);
 }
 .app {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   max-width: 1366px;
@@ -52,7 +51,6 @@ a:visited {
 }
 @media (min-width: 768px) {
   .inner-gradient {
-    height: 85vh;
     width: 90%;
     background: radial-gradient(#c7ad9f 40%, #b1d4e0);
     box-shadow: 0px 1px 6px 3px rgba(0, 0, 0, 0.3);
