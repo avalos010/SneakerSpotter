@@ -6,11 +6,16 @@ function Card({ name, imgUrl, hasStockX, hasGoat, prices, links }) {
   return (
     <div className="card-container--item animate-slideInFade">
       <h3>{name}</h3>
-      <img width={300} src={imgUrl} alt={`image of ${name}`} />
+      <img
+        data-cy="sneaker-image"
+        width={300}
+        src={imgUrl}
+        alt={`image of ${name}`}
+      />
       <div className="card-item--button-container">
         {hasStockX && (
           <div className="card-item--price--container">
-            <p>${prices.stockX}</p>
+            <p data-cy="sneaker-price">${prices.stockX}</p>
             <a className="btn" target="_blank" href={links.stockX}>
               StockX
             </a>
@@ -19,7 +24,7 @@ function Card({ name, imgUrl, hasStockX, hasGoat, prices, links }) {
 
         {hasGoat && (
           <div className="card-item--price--container">
-            <p>${prices.goat}</p>
+            <p data-cy="sneaker-price">${prices.goat}</p>
             <a className="btn" target="_blank" href={links.goat}>
               Goat
             </a>

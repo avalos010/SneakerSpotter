@@ -6,7 +6,7 @@ function Popular() {
   const { data, isLoading } = usePopularSneakers();
 
   return (
-    <div className="sneaker-wrapper">
+    <div className="sneaker-wrapper" data-cy="sneakers-page">
       <h2>Popular Items</h2>
       {isLoading && <Spinner />}
       <div className="sneaker-container">
