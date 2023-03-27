@@ -51,8 +51,9 @@ function Nav() {
             onClick={() => setShowSearchOverlay(true)}
           />
         </li>
-
-        <img width={80} src={Logo} alt="logo of shoes" />
+        <li>
+          <img width={80} src={Logo} alt="logo of shoes" />
+        </li>
       </ul>
 
       {showSearchOverlay && <SearchOverlay closeOverlay={closeOverlay} />}

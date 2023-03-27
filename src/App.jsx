@@ -6,14 +6,14 @@ import Popular from "./pages/Popular/Popular";
 import Sneakers from "./pages/Sneakers/Sneakers";
 function App() {
   return (
-    <div className="app">
+    <main className="app">
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/popular" element={<Popular />} />
         <Route path="/sneakers/:brand" element={<Sneakers />} />{" "}
       </Routes>
-    </div>
+    </main>
   );
 }
 
