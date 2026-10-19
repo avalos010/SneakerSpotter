@@ -1,45 +1,28 @@
-import type { ResellLinks, ResellPrices } from "../../types/sneaker";
+import { Link } from "react-router-dom";
+import type { Sneaker } from "../../types/sneaker";
+import SellerOffers from "../SellerOffers/SellerOffers";
 import "./card.css";
 
 interface CardProps {
-  name: string;
-  imgUrl: string;
-  hasStockX: boolean;
-  hasGoat: boolean;
-  prices?: ResellPrices | null;
-  links?: ResellLinks | null;
+  sneaker: Sneaker;
 }
 
-function Card({ name, imgUrl, hasStockX, hasGoat, prices, links }: CardProps) {
-
+function Card({ sneaker }: CardProps) {
   return (
     <div className="card-container--item animate-slideInFade">
-      <h3>{name}</h3>
+      <h3>{sneaker.shoeName}</h3>
       <img
         data-cy="sneaker-image"
         width={300}
-        src={imgUrl}
-        alt={`image of ${name}`}
+        src={sneaker.thumbnail}
+        alt={`image of ${sneaker.shoeName}`}
       />
-      <div className="card-item--button-container">
-        {hasStockX && (
-          <div className="card-item--price--container">
-            <p data-cy="sneaker-price">${prices?.stockX}</p>
-            <a className="btn" target="_blank" rel="noreferrer" href={links?.stockX}>
-              StockX
-            </a>
-          </div>
-        )}
-
-        {hasGoat && (
-          <div className="card-item--price--container">
-            <p data-cy="sneaker-price">${prices?.goat}</p>
-            <a className="btn" target="_blank" rel="noreferrer" href={links?.goat}>
-              Goat
-            </a>
-          </div>
-        )}
-      </div>
+      <div className="card-sellers"><SellerOffers sneaker={sneaker} /></div>
+      {sneaker.styleID && (
+        <Link className="btn compare-sizes" to={`/sneaker/${encodeURIComponent(sneaker.styleID)}`}>
+          Compare sizes
+        </Link>
+      )}
     </div>
   );
 }

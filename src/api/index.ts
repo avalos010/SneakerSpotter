@@ -3,6 +3,7 @@ import type { SearchResponse, Sneaker } from "../types/sneaker";
 
 const api = axios.create({
   baseURL:
+    import.meta.env.VITE_API_URL ||
     "https://serverless-netlify--snazzy-empanada-ab1114.netlify.app/.netlify/functions/api/",
 });
 
@@ -13,7 +14,20 @@ export async function getPopularSneakers() {
 }
 
 export async function searchSneakers(query: string) {
-  const res = await api.get<SearchResponse>(`/search/${encodeURIComponent(query)}`);
-  const data = res.data;
-  return data;
+  try {
+    const res = await api.get<SearchResponse>(
+      `/search/${encodeURIComponent(query)}`,
+    );
+    return res.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response?.status === 404) {
+      return { error: "Product Not Found" };
+    }
+    throw error;
+  }
+}
+
+export async function getSneakerPrices(styleID: string) {
+  const res = await api.get<Sneaker>(`/id/${encodeURIComponent(styleID)}/prices`);
+  return res.data;
 }

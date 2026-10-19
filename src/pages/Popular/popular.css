@@ -7,9 +7,15 @@
 }
 
 .sneaker-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
+  box-sizing: border-box;
+  width: 100%;
   gap: 24px;
   justify-content: center;
   padding: 20px;
-  flex-wrap: wrap;
+}
+
+.sneaker-container > .card-container--item {
+  max-width: none;
 }
