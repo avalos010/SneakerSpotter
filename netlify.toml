@@ -1,3 +1,17 @@
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
+[build.environment]
+  CYPRESS_INSTALL_BINARY = "0"
+
+# PR previews do not need Sentry release credentials.
+[[context.deploy-preview.plugins]]
+  package = "@sentry/netlify-build-plugin"
+
+  [context.deploy-preview.plugins.inputs]
+    deployPreviews = false
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
