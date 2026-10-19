@@ -2,9 +2,7 @@ import axios from "axios";
 import type { SearchResponse, Sneaker } from "../types/sneaker";
 
 const api = axios.create({
-  baseURL:
-    import.meta.env.VITE_API_URL ||
-    "https://serverless-netlify--snazzy-empanada-ab1114.netlify.app/.netlify/functions/api/",
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 export async function getPopularSneakers() {
@@ -28,6 +26,8 @@ export async function searchSneakers(query: string) {
 }
 
 export async function getSneakerPrices(styleID: string) {
-  const res = await api.get<Sneaker>(`/id/${encodeURIComponent(styleID)}/prices`);
+  const res = await api.get<Sneaker>(
+    `/id/${encodeURIComponent(styleID)}/prices`,
+  );
   return res.data;
 }
