@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { SearchResponse, Sneaker } from "../types/sneaker";
 
 const api = axios.create({
   baseURL:
@@ -6,13 +7,13 @@ const api = axios.create({
 });
 
 export async function getPopularSneakers() {
-  const res = await api.get(`/popular`);
+  const res = await api.get<Sneaker[]>(`/popular`);
   const data = res.data;
   return data;
 }
 
-export async function searchSneakers(query) {
-  const res = await api.get(`/search/${query}`);
+export async function searchSneakers(query: string) {
+  const res = await api.get<SearchResponse>(`/search/${encodeURIComponent(query)}`);
   const data = res.data;
   return data;
 }

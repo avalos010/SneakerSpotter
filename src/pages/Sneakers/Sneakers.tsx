@@ -9,12 +9,11 @@ function Sneakers() {
 
   return (
     <div className="sneaker-wrapper">
-      <h2 className="animate-fadein">{brand.toUpperCase()}</h2>
+      <h2 className="animate-fadein">{brand?.toUpperCase()}</h2>
       {isLoading && <Spinner />}
-      {data?.error && <h3>Product Not Found</h3>}
+      {data && !Array.isArray(data) && data.error && <h3>Product Not Found</h3>}
       <div className="sneaker-container">
-        {!!data &&
-          !data.error &&
+        {Array.isArray(data) &&
           data.map((item) => {
             return (
               <Card

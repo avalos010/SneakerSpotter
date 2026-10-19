@@ -2,22 +2,28 @@ import { useNavigate } from "react-router-dom";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import "./searchoverlay.css";
 import { useEffect, useRef } from "react";
+import type { SubmitEvent } from "react";
 
-function SearchOverlay({ closeOverlay }) {
+interface SearchOverlayProps {
+  closeOverlay: () => void;
+}
+
+function SearchOverlay({ closeOverlay }: SearchOverlayProps) {
   const navigate = useNavigate();
-  const inputRef = useRef(null);
-  const handleSearch = (e) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const handleSearch = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate(`/sneakers/${e.target[0].value}`);
-    e.target[0].value = "";
+    const query = inputRef.current?.value.trim();
+    if (!query) return;
+
+    navigate(`/sneakers/${encodeURIComponent(query)}`);
+    e.currentTarget.reset();
     closeOverlay();
   };
 
   useEffect(() => {
-    if (inputRef) {
-      inputRef.current.focus();
-    }
-  }, [inputRef]);
+    inputRef.current?.focus();
+  }, []);
 
   return (
     <div

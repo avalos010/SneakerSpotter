@@ -1,7 +1,16 @@
-import { useState } from "react";
+import type { ResellLinks, ResellPrices } from "../../types/sneaker";
 import "./card.css";
-function Card({ name, imgUrl, hasStockX, hasGoat, prices, links }) {
-  const [size, setSize] = useState(null);
+
+interface CardProps {
+  name: string;
+  imgUrl: string;
+  hasStockX: boolean;
+  hasGoat: boolean;
+  prices?: ResellPrices | null;
+  links?: ResellLinks | null;
+}
+
+function Card({ name, imgUrl, hasStockX, hasGoat, prices, links }: CardProps) {
 
   return (
     <div className="card-container--item animate-slideInFade">
@@ -15,8 +24,8 @@ function Card({ name, imgUrl, hasStockX, hasGoat, prices, links }) {
       <div className="card-item--button-container">
         {hasStockX && (
           <div className="card-item--price--container">
-            <p data-cy="sneaker-price">${prices.stockX}</p>
-            <a className="btn" target="_blank" href={links.stockX}>
+            <p data-cy="sneaker-price">${prices?.stockX}</p>
+            <a className="btn" target="_blank" rel="noreferrer" href={links?.stockX}>
               StockX
             </a>
           </div>
@@ -24,8 +33,8 @@ function Card({ name, imgUrl, hasStockX, hasGoat, prices, links }) {
 
         {hasGoat && (
           <div className="card-item--price--container">
-            <p data-cy="sneaker-price">${prices.goat}</p>
-            <a className="btn" target="_blank" href={links.goat}>
+            <p data-cy="sneaker-price">${prices?.goat}</p>
+            <a className="btn" target="_blank" rel="noreferrer" href={links?.goat}>
               Goat
             </a>
           </div>
