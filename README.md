@@ -2,6 +2,7 @@
 
 React + TypeScript app built with Vite. Requires Node.js 22.12+ (22.x), 24.x,
 or 26+, and pnpm 10.20.0.
+The `.nvmrc` file pins the tested Node.js version for local development and Netlify builds.
 
 ```sh
 pnpm install
