@@ -7,6 +7,11 @@
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
   force = false
+
+[[headers]]
+  for = "/app-shell.html"
+  [headers.values]
+    X-Robots-Tag = "noindex"

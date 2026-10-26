@@ -45,6 +45,11 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 :root[data-theme="dark"] .home-note,
 :root[data-theme="dark"] .collection-heading--aside { color: #c4bab1; }
 :root[data-theme="dark"] .collection-heading { border-color: #5c5550; }
+:root[data-theme="dark"] .home-guide { background: rgba(30,28,26,.6); border-color: #4c4843; }
+:root[data-theme="dark"] .home-guide .eyebrow { color: #e1b6a0; }
+:root[data-theme="dark"] .home-guide p { color: #c4bab1; }
+:root[data-theme="dark"] .home-guide--links a { border-color: #5c5550; }
+:root[data-theme="dark"] .home-guide--links a:hover { color: #e1ac92; }
 :root[data-theme="dark"] .btn { background: #f0e9e0; color: #24201c; }
 :root[data-theme="dark"] .btn:hover { background: #d7c8bb; }
 :root[data-theme="dark"] .card-container--item,

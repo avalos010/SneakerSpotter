@@ -68,6 +68,35 @@ describe("Sneakers", () => {
     cy.get('img[alt="Black Nike Air Force 1 sneaker"]').should("be.visible");
   });
 
+  it("updates search metadata as visitors navigate", () => {
+    cy.visit("/");
+    cy.title().should("eq", "Sneaker Spotter | Compare Sneaker Prices & Sizes");
+    cy.get('link[rel="canonical"]').should("have.attr", "href", "https://jazzy-crepe-f479cc.netlify.app/");
+    cy.contains("a", "Explore sneakers").click();
+    cy.title().should("contain", "Popular Sneakers");
+    cy.get('link[rel="canonical"]').should("have.attr", "href", "https://jazzy-crepe-f479cc.netlify.app/popular");
+    cy.contains("a", "Compare sizes").first().click();
+    cy.wait("@sneakerPrices");
+    cy.title().should("contain", sneaker.shoeName);
+    cy.get('meta[property="og:url"]').should("have.attr", "content", "https://jazzy-crepe-f479cc.netlify.app/sneaker/HQ7978-001");
+    cy.get('script[data-seo-jsonld]').should(($script) => {
+      const data = JSON.parse($script.text());
+      expect(data["@type"]).to.equal("Product");
+      expect(data.name).to.equal(sneaker.shoeName);
+      expect(data.offers.lowPrice).to.equal(120);
+    });
+    cy.visit("/sneakers/air%20max");
+    cy.get('meta[name="robots"]').should("have.attr", "content", "noindex, follow");
+    cy.get('script[data-seo-jsonld]').should("not.exist");
+  });
+
+  it("marks a missing sneaker as noindex", () => {
+    cy.intercept("GET", "**/id/*/prices", { statusCode: 404, body: { error: "Product Not Found" } });
+    cy.visit("/sneaker/missing");
+    cy.contains('[role="alert"]', "Product Not Found").should("be.visible");
+    cy.get('meta[name="robots"]').should("have.attr", "content", "noindex, follow");
+  });
+
   it("shows card placeholders while the catalog loads", () => {
     cy.intercept(popularRoute, { delay: 1200, body: [sneaker] }).as("slowPopular");
     cy.visit("/popular");

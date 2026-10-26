@@ -12,6 +12,8 @@ pnpm dev
 `pnpm typecheck` checks the app, Vite/Cypress configuration, and browser tests.
 `pnpm build` runs type checks and creates the production bundle in `dist`.
 `pnpm preview` serves that bundle locally.
+After a build, `pnpm test:seo` checks the generated crawlable pages, canonical
+URLs, sitemap, and robots file.
 
 To run browser tests, keep `pnpm dev` running in another terminal, then run
 `pnpm test:e2e` (or `pnpm test:e2e:open` for the Cypress UI). If the Cypress
@@ -37,6 +39,21 @@ the seller offers above. Missing prices show a dash. On mobile, the table scroll
 horizontally while the size column stays visible.
 
 The pnpm lockfile is the source of truth for dependency versions.
+
+## Search visibility
+
+The build prerenders the home, popular, Nike, Jordan, and adidas pages with
+route-specific titles, descriptions, canonical URLs, and social metadata. It
+also generates `/sitemap.xml` and `/robots.txt`. The default canonical site is
+`https://jazzy-crepe-f479cc.netlify.app`; if the production domain changes,
+set `VITE_SITE_URL` to the new HTTPS origin in the build environment.
+
+Individual sneaker pages set product metadata and structured data after their
+API response loads. Search results and missing products are marked `noindex`.
+Because sneaker details depend on JavaScript and a live API, prerendering those
+pages from a stable product feed would make them more reliably discoverable.
+After deploying, submit the sitemap in Google Search Console and check URL
+Inspection for indexing or rendering problems.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/75de9ae8-8ef0-4b34-b4cc-0bd74831c44d/deploy-status)](https://app.netlify.com/sites/jazzy-crepe-f479cc/deploys)
 

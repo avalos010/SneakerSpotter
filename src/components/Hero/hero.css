@@ -17,6 +17,13 @@
 .hero-visual--caption { position: absolute; z-index: 2; bottom: 30px; left: 34px; font-size: 10px; letter-spacing: .13em; font-weight: 700; }
 .home-note { display: flex; justify-content: space-between; gap: 20px; padding: 20px 2px; color: #5d5550; font-size: 10px; font-weight: 700; letter-spacing: .13em; }
 .home-note b { color: #a76a51; margin: 0 7px; }
+.home-guide { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; padding: clamp(30px, 5vw, 60px); background: rgba(255,255,255,.48); border: 1px solid rgba(255,255,255,.55); }
+.home-guide .eyebrow { color: #815f50; }
+.home-guide h2 { max-width: 600px; margin: 12px 0; font-size: clamp(26px, 3vw, 38px); line-height: 1.2; letter-spacing: -.04em; }
+.home-guide p { max-width: 650px; margin: 0; color: #625d58; font-size: 15px; line-height: 1.7; }
+.home-guide--links { display: grid; align-content: center; }
+.home-guide--links a { display: flex; justify-content: space-between; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(36,31,27,.2); font-size: 13px; font-weight: 700; }
+.home-guide--links a:hover { color: #9c5f45; }
 @media (max-width: 767px) {
   .inner-hero-container { min-height: 0; grid-template-columns: 1fr; }
   .hero-copy { padding: 45px 28px 40px; }
@@ -26,4 +33,5 @@
   .hero-visual--label { top: 20px; right: 20px; }
   .hero-visual--caption { bottom: 18px; left: 20px; font-size: 9px; }
   .home-note { flex-direction: column; gap: 9px; line-height: 1.5; }
+  .home-guide { grid-template-columns: 1fr; gap: 20px; padding: 28px; }
 }
