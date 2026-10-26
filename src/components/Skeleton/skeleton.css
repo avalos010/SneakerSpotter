@@ -1,0 +1,30 @@
+.skeleton-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.skeleton-message { display: flex; align-items: baseline; gap: 10px; margin: 22px 0 0; color: #625a53; font-size: 13px; line-height: 1.5; }
+.skeleton-message span { color: #a76a51; }
+.skeleton-catalog { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 18px; grid-column: 1 / -1; }
+.skeleton-card, .skeleton-panel { min-width: 0; background: #fff; border: 1px solid rgba(75, 62, 51, .08); box-shadow: 0 8px 24px rgba(61, 49, 39, .06); }
+.skeleton-card { padding: 12px; }
+.skeleton-block { background: linear-gradient(100deg, #eee9e3 30%, #f8f6f3 50%, #eee9e3 70%); background-size: 200% 100%; animation: skeleton-shimmer 1.6s ease-in-out infinite; }
+.skeleton-card--image { height: 220px; }
+.skeleton-card--body { padding: 20px 8px 6px; }
+.skeleton-line { height: 12px; width: 100%; }
+.skeleton-line--short { width: 30%; height: 9px; }
+.skeleton-line--title { width: 88%; height: 16px; margin-top: 12px; }
+.skeleton-line--medium { width: 55%; margin-top: 10px; }
+.skeleton-card--offers { display: grid; gap: 7px; margin: 28px 0 24px; }
+.skeleton-card--offer { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 12px; }
+.skeleton-card--offer .skeleton-line { width: 70%; }
+.skeleton-button { height: 35px; }
+.skeleton-details--title { width: min(55%, 500px); height: 42px; margin: 16px 0 24px; }
+.skeleton-details--image { padding: 24px; }
+.skeleton-details--image > div { height: 332px; }
+.skeleton-details--info { padding: 30px; }
+.skeleton-details--row { display: flex; align-items: center; gap: 20px; margin-bottom: 18px; }
+.skeleton-details--row .skeleton-line--medium { margin: 0; }
+.skeleton-details--heading { height: 20px; width: 45%; margin: 28px 0 20px; }
+.skeleton-details--info .skeleton-card--offer + .skeleton-card--offer { margin-top: 7px; }
+.skeleton-details--table { margin-top: 24px; padding: 24px; }
+.skeleton-details--table .skeleton-details--heading { margin-top: 0; width: 180px; }
+.skeleton-details--table-body { height: 150px; }
+@keyframes skeleton-shimmer { to { background-position: -200% 0; } }
+@media (max-width: 767px) { .skeleton-catalog { gap: 14px; } .skeleton-details--title { width: 80%; height: 34px; } .skeleton-details--image > div { height: 230px; } .skeleton-details--info, .skeleton-details--table { padding: 20px; } }

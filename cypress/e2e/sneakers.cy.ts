@@ -53,6 +53,26 @@ describe("Sneakers", () => {
     cy.get('[data-cy="sneakers-page"]').should("be.visible");
   });
 
+  it("shows card placeholders while the catalog loads", () => {
+    cy.intercept(popularRoute, { delay: 1200, body: [sneaker] }).as("slowPopular");
+    cy.visit("/popular");
+    cy.get('[data-cy="catalog-skeleton"]').should("be.visible").and("have.attr", "role", "status");
+    cy.contains("We check sneaker sites live for listings.").should("be.visible");
+    cy.wait("@slowPopular");
+    cy.get('[data-cy="catalog-skeleton"]').should("not.exist");
+    cy.contains("h3", sneaker.shoeName).should("be.visible");
+  });
+
+  it("shows detail placeholders while seller prices load", () => {
+    cy.intercept("GET", "**/id/*/prices", { delay: 1200, body: detailedSneaker }).as("slowPrices");
+    cy.visit("/sneaker/HQ7978-001");
+    cy.get('[data-cy="details-skeleton"]').should("be.visible").and("have.attr", "role", "status");
+    cy.contains("We scrape sneaker sites for live prices.").should("be.visible");
+    cy.wait("@slowPrices");
+    cy.get('[data-cy="details-skeleton"]').should("not.exist");
+    cy.get('[data-cy="size-price-table"] table').should("be.visible");
+  });
+
   it("shows sneaker information and marketplace links on the popular page", () => {
     cy.visit("/popular");
     cy.wait("@popularSneakers");
@@ -66,6 +86,28 @@ describe("Sneakers", () => {
     cy.contains("a", "StockX").should("not.exist");
   });
 
+  it("renders catalog rows in batches and provides a load-more fallback", () => {
+    cy.viewport(1024, 768);
+    const sneakers = Array.from({ length: 24 }, (_, index) => ({ ...sneaker, _id: `shoe-${index}` }));
+    cy.intercept(popularRoute, { body: sneakers }).as("manySneakers");
+    cy.visit("/popular", {
+      onBeforeLoad(window) {
+        Object.defineProperty(window, "IntersectionObserver", { value: undefined, configurable: true });
+      },
+    });
+    cy.wait("@manySneakers");
+    cy.get('[data-cy="sneaker-image"]').should(($images) => {
+      expect($images.first()).to.have.attr("loading", "lazy");
+    }).then(($images) => {
+      const initialCount = $images.length;
+      expect(initialCount).to.be.lessThan(sneakers.length);
+      cy.get('[data-cy="load-more"]').click();
+      cy.get('[data-cy="sneaker-image"]').should(($loaded) => {
+        expect($loaded.length).to.be.greaterThan(initialCount);
+      });
+    });
+  });
+
   it("shows sneakers for a brand route", () => {
     cy.visit("/sneakers/nike");
     cy.wait("@searchSneakers").its("request.url").should("include", "/search/nike");
@@ -77,7 +119,7 @@ describe("Sneakers", () => {
 
   it("submits a search using the focused input and closes the overlay", () => {
     cy.visit("/");
-    cy.get(".magnifying-glass-icon").click();
+    cy.get('button[aria-label="Search sneakers"]').click();
     cy.get(".search-input").should("be.focused").type("air max{enter}");
     cy.location("pathname").should("eq", "/sneakers/air%20max");
     cy.wait("@searchSneakers").its("request.url").should("include", "/search/air%20max");

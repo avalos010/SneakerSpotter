@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getSneakerPrices } from "../../api";
 import SellerOffers from "../../components/SellerOffers/SellerOffers";
-import Spinner from "../../components/Spinner/Spinner";
+import { DetailsSkeleton } from "../../components/Skeleton/Skeleton";
 import SizePriceTable from "../../components/SizePriceTable/SizePriceTable";
 import { formatPrice, sellerName, validPrice } from "../../utils/sellers";
 import "../../components/Card/card.css";
@@ -34,7 +34,7 @@ function SneakerDetails({ styleID }: { styleID: string }) {
   return (
     <section className="sneaker-details">
       <Link className="sneaker-details--back" to="/popular">← Browse popular sneakers</Link>
-      {isLoading && <><p>Loading seller prices…</p><Spinner /></>}
+      {isLoading && <DetailsSkeleton />}
       {isError && (
         <div role="alert">
           <h2>{notFound ? "Product Not Found" : "Unable to load sneaker prices."}</h2>
