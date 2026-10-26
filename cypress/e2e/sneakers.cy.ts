@@ -43,6 +43,7 @@ describe("Sneakers", () => {
       body: [sneaker],
     }).as("searchSneakers");
     cy.intercept("GET", "**/id/*/prices", { body: detailedSneaker }).as("sneakerPrices");
+    cy.intercept("GET", "**/id/*/prices/*", { body: sneaker }).as("sellerPrices");
   });
 
   it("loads the home page and navigates to popular sneakers", () => {
@@ -134,6 +135,15 @@ describe("Sneakers", () => {
     cy.get('[data-cy="seller-offer"]').should("have.length", 3);
   });
 
+  it("shows an available seller before a slow seller finishes", () => {
+    cy.intercept("GET", "**/id/*/prices/stockX", { delay: 3000, body: detailedSneaker }).as("slowSeller");
+    cy.visit("/sneakers/nike");
+    cy.contains('[data-cy="seller-offer"]', "GOAT").should("contain", "From $135");
+    cy.contains("Loading seller prices…").should("be.visible");
+    cy.wait("@slowSeller");
+    cy.contains('[data-cy="seller-offer"]', "StockX").should("contain", "From $120");
+  });
+
   it("submits a search using the focused input and closes the overlay", () => {
     cy.visit("/");
     cy.get('button[aria-label="Search sneakers"]').click();
@@ -158,7 +168,7 @@ describe("Sneakers", () => {
   });
 
   it("handles the API's product-not-found response", () => {
-    cy.intercept("GET", "**/search/missing", {
+    cy.intercept({ method: "GET", pathname: /\/search\/missing$/ }, {
       statusCode: 404,
       body: { error: "Product Not Found" },
     });

@@ -25,6 +25,15 @@ export async function searchSneakers(query: string) {
   }
 }
 
+export type SellerKey = "goat" | "flightClub" | "stadiumGoods" | "stockX";
+
+export async function getSellerPrices(styleID: string, seller: SellerKey) {
+  const res = await api.get<Sneaker>(
+    `/id/${encodeURIComponent(styleID)}/prices/${seller}`,
+  );
+  return res.data;
+}
+
 export async function getSneakerPrices(styleID: string) {
   const res = await api.get<Sneaker>(
     `/id/${encodeURIComponent(styleID)}/prices`,
