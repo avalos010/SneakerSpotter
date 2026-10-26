@@ -1,98 +1,94 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
-body {
-  background: linear-gradient(to right, #c7ad9f 20%, #b1d4e0);
-}
-.app {
-  display: flex;
-  flex-direction: column;
-  max-width: 1366px;
-  margin: auto;
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap");
+:root { color: #1c1b1a; background: #e8e3dd; font-family: Arial, Helvetica, sans-serif; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; background: linear-gradient(120deg, #d8c6bb 0%, #e8e3dc 48%, #c5dce2 100%); }
+.app { max-width: 1440px; min-height: 100vh; margin: auto; padding: 0 40px 40px; }
+.skip-link { position: fixed; z-index: 20; top: 8px; left: 8px; padding: 12px 16px; background: #fff; color: #1c1b1a; font-size: 14px; font-weight: 700; transform: translateY(-150%); }
+.skip-link:focus { transform: translateY(0); }
+p { line-height: 1.5; }
+h1, h2, h3, h4, h5 { font-family: "Poppins", Arial, sans-serif; }
+a { color: inherit; text-decoration: none; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #456f7b; outline-offset: 3px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 20px; border: 0; padding: 14px 18px; background: #1c1b1a; color: #fff; text-align: center; font-weight: 700; transition: background .2s ease, transform .2s ease; }
+.btn:hover { background: #42403d; }
+.eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+.animate-slideInFade, .animate-fadein { animation: fadein .45s ease both; }
+@keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 767px) { .app { padding: 0 16px 24px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
 
-* {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 18px;
-}
-
-p {
-  line-height: 1.5;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: "Poppins", sans-serif;
-}
-
-h2 {
-  font-size: 24px;
-}
-button:active {
-  transform: scale(0.8);
-}
-
-button,
-.btn {
-  border: none;
-  min-width: 100px;
-  padding: 10px;
-  margin-top: 20px;
-  box-shadow: 0 4px 3px 1px rgba(0, 0, 0, 0.1);
-}
-
-a {
-  text-decoration: none;
-}
-a,
-a:visited {
-  color: #000;
-}
-@media (min-width: 768px) {
-  .inner-gradient {
-    width: 90%;
-    background: radial-gradient(#c7ad9f 40%, #b1d4e0);
-    box-shadow: 0px 1px 6px 3px rgba(0, 0, 0, 0.3);
-    margin: auto;
-  }
-}
-
-.animate-slideInFade {
-  animation: slideInFade 0.4s ease-in;
-}
-
-.animate-fadein {
-  animation: fadein 0.7s ease-in;
-}
-
-/* Animations here */
-
-@keyframes fadeinShoes {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideInFade {
-  from {
-    opacity: 0;
-    transform: translateY(-500px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
-
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+/* Dark mode keeps the warm neutrals and cool blue tones of the original palette. */
+:root[data-theme="dark"] { color: #f3eee8; background: #1b1d1e; }
+:root[data-theme="dark"] :is(button, a, input, select, [tabindex]):focus-visible { outline-color: #a8d8e2; }
+:root[data-theme="dark"] body { background: linear-gradient(120deg, #302722 0%, #242526 48%, #1d3037 100%); }
+:root[data-theme="dark"] .navigation-menu--links a { color: #c4bcb5; }
+:root[data-theme="dark"] .navigation-menu--links a:hover,
+:root[data-theme="dark"] .navigation-menu--links a.active { color: #fffaf4; border-color: #fffaf4; }
+:root[data-theme="dark"] .navigation-menu--search,
+:root[data-theme="dark"] .navigation-menu--toggle,
+:root[data-theme="dark"] .navigation-menu--theme { border-color: #6a6560; background: rgba(255,255,255,.05); }
+:root[data-theme="dark"] .navigation-menu--search:hover,
+:root[data-theme="dark"] .navigation-menu--toggle:hover,
+:root[data-theme="dark"] .navigation-menu--theme:hover { background: rgba(255,255,255,.14); }
+:root[data-theme="dark"] .inner-hero-container { background: #292724; border-color: #4c4843; }
+:root[data-theme="dark"] .hero-visual { background: linear-gradient(135deg, #49413d, #2e464e); }
+:root[data-theme="dark"] .hero-copy .eyebrow,
+:root[data-theme="dark"] .collection-heading .eyebrow { color: #e1b6a0; }
+:root[data-theme="dark"] .hero-copy h1 em,
+:root[data-theme="dark"] .navigation-menu--dot,
+:root[data-theme="dark"] .collection-heading h1 span,
+:root[data-theme="dark"] .home-note b { color: #d6997d; }
+:root[data-theme="dark"] .hero-copy p,
+:root[data-theme="dark"] .collection-heading p,
+:root[data-theme="dark"] .home-note,
+:root[data-theme="dark"] .collection-heading--aside { color: #c4bab1; }
+:root[data-theme="dark"] .collection-heading { border-color: #5c5550; }
+:root[data-theme="dark"] .btn { background: #f0e9e0; color: #24201c; }
+:root[data-theme="dark"] .btn:hover { background: #d7c8bb; }
+:root[data-theme="dark"] .card-container--item,
+:root[data-theme="dark"] .skeleton-card,
+:root[data-theme="dark"] .skeleton-panel,
+:root[data-theme="dark"] .sneaker-details--info,
+:root[data-theme="dark"] .size-price-table { background: #2d2b29; border-color: #4b4641; box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+:root[data-theme="dark"] .card-container--item:focus { outline-color: #a8d8e2; }
+:root[data-theme="dark"] .card-image,
+:root[data-theme="dark"] .sneaker-details--images { background: #e8e5df; }
+:root[data-theme="dark"] .card-heading > span { color: #dfad94; }
+:root[data-theme="dark"] .card-heading p { color: #bdb2a8; }
+:root[data-theme="dark"] .card-item--price--container p,
+:root[data-theme="dark"] .sneaker-details--back,
+:root[data-theme="dark"] .sneaker-details--description p,
+:root[data-theme="dark"] .sneaker-details--notice,
+:root[data-theme="dark"] .skeleton-message { color: #d0c7be; }
+:root[data-theme="dark"] .compare-sizes { border-color: #625b54; background: transparent; color: #f3eee8; }
+:root[data-theme="dark"] .compare-sizes:hover { background: transparent; color: #e1ac92; }
+:root[data-theme="dark"] .catalog-more button { color: #f3eee8; border-color: #6a625a; background: #34312e; }
+:root[data-theme="dark"] .catalog-more button:hover { background: #48413c; }
+:root[data-theme="dark"] .search-overlay--content { background: #2d2b29; }
+:root[data-theme="dark"] .search-overlay--eyebrow { color: #e1ac92; }
+:root[data-theme="dark"] .search-input,
+:root[data-theme="dark"] .sneaker-details select { color: #f3eee8; background: #211f1d; border-color: #776c63; }
+:root[data-theme="dark"] .close-icon { color: #f3eee8; }
+:root[data-theme="dark"] .sneaker-details--info h2,
+:root[data-theme="dark"] .sneaker-details--description { border-color: #5b524b; }
+:root[data-theme="dark"] .size-price-table--header p,
+:root[data-theme="dark"] .size-price-table--key span,
+:root[data-theme="dark"] .size-price-table--empty,
+:root[data-theme="dark"] .size-price-table--mobile-hint { color: #c4b9af; }
+:root[data-theme="dark"] .size-price-table--currency,
+:root[data-theme="dark"] .size-price-table thead th,
+:root[data-theme="dark"] .size-price-table thead th:first-child { background: #49413b; color: #f1e8df; }
+:root[data-theme="dark"] .size-price-table th,
+:root[data-theme="dark"] .size-price-table td { border-color: #5a514a; }
+:root[data-theme="dark"] .size-price-table th:first-child { background: #2d2b29; box-shadow: 1px 0 0 #5a514a; }
+:root[data-theme="dark"] .size-price-table tbody tr:nth-child(even),
+:root[data-theme="dark"] .size-price-table tbody tr:nth-child(even) th { background: #35312e; }
+:root[data-theme="dark"] .size-price-table tbody button { color: #f3eee8; }
+:root[data-theme="dark"] .size-price-table tbody button:hover,
+:root[data-theme="dark"] .size-price-table tbody button[aria-pressed="true"] { background: #5b4d43; }
+:root[data-theme="dark"] .size-price-table td.size-price-table--lowest { background: #25483a; color: #c1ebd0; }
+:root[data-theme="dark"] .size-price-table--unavailable { color: #b9aea5; }
+:root[data-theme="dark"] .skeleton-block { background: linear-gradient(100deg, #403b37 30%, #56504a 50%, #403b37 70%); background-size: 200% 100%; }
+@media (max-width: 767px) { :root[data-theme="dark"] .navigation-menu--links { background: #302d2a; } }

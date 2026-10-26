@@ -1,9 +1,10 @@
 import Hero from "../../components/Hero/Hero";
+import type { Theme } from "../../App";
 
-function Home() {
+function Home({ theme }: { theme: Theme }) {
   return (
     <>
-      <Hero />
+      <Hero theme={theme} />
     </>
   );
 }

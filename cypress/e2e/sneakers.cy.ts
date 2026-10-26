@@ -53,6 +53,40 @@ describe("Sneakers", () => {
     cy.get('[data-cy="sneakers-page"]').should("be.visible");
   });
 
+  it("switches themes and remembers the selection", () => {
+    cy.visit("/", { onBeforeLoad(window) { window.localStorage.setItem("sneaker-spotter-theme", "light"); } });
+    cy.get('img[alt="Black Nike Air Force 1 sneaker"]').should("be.visible");
+    cy.get('button[aria-label="Switch to dark mode"]').click();
+    cy.get("html").should("have.attr", "data-theme", "dark");
+    cy.get('img[alt="White Nike Air Force 1 sneaker"]').should("be.visible");
+    cy.reload();
+    cy.get("html").should("have.attr", "data-theme", "dark");
+    cy.get('img[alt="White Nike Air Force 1 sneaker"]').should("be.visible");
+    cy.get('button[aria-label="Switch to light mode"]').click();
+    cy.get("html").should("have.attr", "data-theme", "light");
+    cy.get('img[alt="Black Nike Air Force 1 sneaker"]').should("be.visible");
+  });
+
+  it("shows card placeholders while the catalog loads", () => {
+    cy.intercept(popularRoute, { delay: 1200, body: [sneaker] }).as("slowPopular");
+    cy.visit("/popular");
+    cy.get('[data-cy="catalog-skeleton"]').should("be.visible").and("have.attr", "role", "status");
+    cy.contains("We check sneaker sites live for listings.").should("be.visible");
+    cy.wait("@slowPopular");
+    cy.get('[data-cy="catalog-skeleton"]').should("not.exist");
+    cy.contains("h3", sneaker.shoeName).should("be.visible");
+  });
+
+  it("shows detail placeholders while seller prices load", () => {
+    cy.intercept("GET", "**/id/*/prices", { delay: 1200, body: detailedSneaker }).as("slowPrices");
+    cy.visit("/sneaker/HQ7978-001");
+    cy.get('[data-cy="details-skeleton"]').should("be.visible").and("have.attr", "role", "status");
+    cy.contains("We scrape sneaker sites for live prices.").should("be.visible");
+    cy.wait("@slowPrices");
+    cy.get('[data-cy="details-skeleton"]').should("not.exist");
+    cy.get('[data-cy="size-price-table"] table').should("be.visible");
+  });
+
   it("shows sneaker information and marketplace links on the popular page", () => {
     cy.visit("/popular");
     cy.wait("@popularSneakers");
@@ -66,10 +100,35 @@ describe("Sneakers", () => {
     cy.contains("a", "StockX").should("not.exist");
   });
 
+  it("renders catalog rows in batches and provides a load-more fallback", () => {
+    cy.viewport(1024, 768);
+    const sneakers = Array.from({ length: 24 }, (_, index) => ({ ...sneaker, _id: `shoe-${index}` }));
+    cy.intercept(popularRoute, { body: sneakers }).as("manySneakers");
+    cy.visit("/popular", {
+      onBeforeLoad(window) {
+        Object.defineProperty(window, "IntersectionObserver", { value: undefined, configurable: true });
+      },
+    });
+    cy.wait("@manySneakers");
+    cy.get('[data-cy="sneaker-image"]').should(($images) => {
+      expect($images.first()).to.have.attr("loading", "lazy");
+    }).then(($images) => {
+      const initialCount = $images.length;
+      expect(initialCount).to.be.lessThan(sneakers.length);
+      cy.get('[data-cy="load-more"]').focus();
+      cy.get('[data-cy="load-more"]').trigger("click", { detail: 0 });
+      cy.get('[data-cy="sneaker-image"]').should(($loaded) => {
+        expect($loaded.length).to.be.greaterThan(initialCount);
+      });
+      cy.get('[role="listitem"]').eq(initialCount).should("be.focused");
+      cy.get('.sneaker-grid--announcement').should("contain", "sneakers");
+    });
+  });
+
   it("shows sneakers for a brand route", () => {
     cy.visit("/sneakers/nike");
     cy.wait("@searchSneakers").its("request.url").should("include", "/search/nike");
-    cy.contains("h2", "NIKE").should("be.visible");
+    cy.contains("h1", "NIKE").should("be.visible");
     cy.get('[data-cy="sneaker-price"]').should("be.visible");
     cy.get('[data-cy="sneaker-image"]').should("be.visible");
     cy.get('[data-cy="seller-offer"]').should("have.length", 3);
@@ -77,12 +136,25 @@ describe("Sneakers", () => {
 
   it("submits a search using the focused input and closes the overlay", () => {
     cy.visit("/");
-    cy.get(".magnifying-glass-icon").click();
+    cy.get('button[aria-label="Search sneakers"]').click();
     cy.get(".search-input").should("be.focused").type("air max{enter}");
     cy.location("pathname").should("eq", "/sneakers/air%20max");
     cy.wait("@searchSneakers").its("request.url").should("include", "/search/air%20max");
-    cy.contains("h2", "AIR MAX").should("be.visible");
+    cy.contains("h1", "AIR MAX").should("be.visible");
     cy.get(".search-overlay--container").should("not.exist");
+  });
+
+  it("keeps keyboard focus in search and restores it on close", () => {
+    cy.visit("/");
+    cy.get('button[aria-label="Search sneakers"]').click();
+    cy.get(".search-input").should("be.focused");
+    cy.press(Cypress.Keyboard.Keys.TAB);
+    cy.get('dialog button[type="submit"]').should("be.focused");
+    cy.press(Cypress.Keyboard.Keys.TAB);
+    cy.get('button[aria-label="Close search"]').should("be.focused");
+    cy.get("dialog").trigger("cancel");
+    cy.get("dialog").should("not.exist");
+    cy.get('button[aria-label="Search sneakers"]').should("be.focused");
   });
 
   it("handles the API's product-not-found response", () => {
