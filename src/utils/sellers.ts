@@ -5,6 +5,7 @@ const sellerNames: Record<string, string> = {
   goat: "GOAT",
   flightClub: "Flight Club",
   stadiumGoods: "Stadium Goods",
+  klekt: "KLEKT",
 };
 
 export function sellerName(seller: string): string {

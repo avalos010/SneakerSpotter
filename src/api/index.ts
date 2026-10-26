@@ -25,7 +25,7 @@ export async function searchSneakers(query: string) {
   }
 }
 
-export type SellerKey = "goat" | "flightClub" | "stadiumGoods" | "stockX";
+export type SellerKey = "goat" | "flightClub" | "stadiumGoods" | "stockX" | "klekt";
 
 export async function getSellerPrices(styleID: string, seller: SellerKey) {
   const res = await api.get<Sneaker>(

@@ -12,7 +12,7 @@ interface CardProps {
 
 function Card({ sneaker, loadPrices = false }: CardProps) {
   const styleID = sneaker.styleID;
-  const sellers: SellerKey[] = ["goat", "flightClub", "stadiumGoods", "stockX"];
+  const sellers: SellerKey[] = ["goat", "flightClub", "stadiumGoods", "stockX", "klekt"];
   const prices = useQueries({
     queries: sellers.map((seller) => ({
       queryKey: ["sellerPrices", styleID, seller],
