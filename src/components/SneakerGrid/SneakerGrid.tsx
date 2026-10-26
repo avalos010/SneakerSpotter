@@ -3,7 +3,7 @@ import type { Sneaker } from "../../types/sneaker";
 import Card from "../Card/Card";
 import "./sneakergrid.css";
 
-export default function SneakerGrid({ sneakers }: { sneakers: Sneaker[] }) {
+export default function SneakerGrid({ sneakers, loadPrices = false }: { sneakers: Sneaker[]; loadPrices?: boolean }) {
   const gridRef = useRef<HTMLDivElement>(null);
   const moreRef = useRef<HTMLButtonElement>(null);
   const focusIndex = useRef<number | null>(null);
@@ -52,7 +52,7 @@ export default function SneakerGrid({ sneakers }: { sneakers: Sneaker[] }) {
   return (
     <>
       <div className="sneaker-container" ref={gridRef} role="list" aria-label="Sneakers">
-        {sneakers.slice(0, visibleCount).map((item) => <Card key={item._id} sneaker={item} />)}
+        {sneakers.slice(0, visibleCount).map((item) => <Card key={item._id} sneaker={item} loadPrices={loadPrices} />)}
       </div>
       {visibleCount < sneakers.length && (
         <div className="catalog-more">

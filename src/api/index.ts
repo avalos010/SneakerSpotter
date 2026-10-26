@@ -14,7 +14,7 @@ export async function getPopularSneakers() {
 export async function searchSneakers(query: string) {
   try {
     const res = await api.get<SearchResponse>(
-      `/search/${encodeURIComponent(query)}`,
+      `/search/${encodeURIComponent(query)}`, { params: { catalog: "true" } },
     );
     return res.data;
   } catch (error) {

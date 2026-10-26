@@ -19,7 +19,7 @@ function Sneakers() {
       )}
       {data && !Array.isArray(data) && data.error && <h3>Product Not Found</h3>}
       {Array.isArray(data) && data.length === 0 && <h3>Product Not Found</h3>}
-      {!isLoading && Array.isArray(data) && <SneakerGrid key={brand} sneakers={data} />}
+      {!isLoading && Array.isArray(data) && <SneakerGrid key={brand} sneakers={data} loadPrices />}
     </div>
   );
 }
