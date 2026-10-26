@@ -20,13 +20,11 @@ responses so they can run independently of the API.
 
 To use the local Sneaks API, create `.env` with `VITE_API_URL=http://localhost:4000`
 and start the API on port 4000. Restart Vite after changing `VITE_API_URL`. For deployment, set that
-variable to the deployed API URL, including its `/.netlify/functions/api` prefix
-if applicable. Without it, the app uses the original Netlify API URL.
+variable to the deployed API URL. Without it, the app uses the current production Sneaks API URL.
 
-Popular and search cards show every seller returned by the API, including GOAT,
-Flight Club, Stadium Goods, and StockX. A seller without a price still has its
-product link. “Compare sizes” opens `/sneaker/:styleID`, which requests
-`/id/:styleID/prices` and displays the product details and seller prices by size.
+Popular and search cards show prices included in the catalog and seller links.
+“Compare sizes” opens `/sneaker/:styleID` and fetches live size prices for the
+selected shoe. A seller without a current price still has its product link.
 Prices labeled “From” are the lowest across sizes; selecting a size shows only
 that size's prices. Missing prices and provider failures are displayed without
 substituting prices from another size or seller.

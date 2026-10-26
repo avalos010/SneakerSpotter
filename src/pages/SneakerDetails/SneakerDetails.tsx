@@ -1,11 +1,10 @@
 import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getSneakerPrices } from "../../api";
 import SellerOffers from "../../components/SellerOffers/SellerOffers";
 import Spinner from "../../components/Spinner/Spinner";
 import SizePriceTable from "../../components/SizePriceTable/SizePriceTable";
+import useSneakerPrices from "../../hooks/useSneakerPrices";
 import { formatPrice, sellerName, validPrice } from "../../utils/sellers";
 import "../../components/Card/card.css";
 import "./details.css";
@@ -13,12 +12,7 @@ import "./details.css";
 function SneakerDetails({ styleID }: { styleID: string }) {
   const [size, setSize] = useState("");
   const [imageIndex, setImageIndex] = useState(0);
-  const { data, isLoading, isError, error, refetch } = useQuery({
-    queryKey: ["sneakerPrices", styleID],
-    queryFn: () => getSneakerPrices(styleID),
-    staleTime: 60_000,
-    refetchOnMount: true,
-  });
+  const { data, isLoading, isError, error, refetch } = useSneakerPrices(styleID);
 
   const sizes = Array.from(new Set(
     Object.values(data?.resellPrices ?? {}).flatMap((prices) =>

@@ -2,7 +2,7 @@ import axios from "axios";
 import type { SearchResponse, Sneaker } from "../types/sneaker";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_API_URL || "https://snazzy-empanada-ab1114.netlify.app",
 });
 
 export async function getPopularSneakers() {
