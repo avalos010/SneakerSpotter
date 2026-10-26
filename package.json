@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p cypress/tsconfig.json",
-    "build": "pnpm typecheck && vite build",
+    "build": "pnpm typecheck && vite build && node scripts/prerender.mjs",
+    "test:seo": "node --test test/seo-build.test.mjs",
     "preview": "vite preview",
     "test:e2e": "cypress run",
     "test:e2e:open": "cypress open"

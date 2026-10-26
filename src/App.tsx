@@ -6,9 +6,11 @@ import Home from "./pages/Home/Home";
 import Popular from "./pages/Popular/Popular";
 import Sneakers from "./pages/Sneakers/Sneakers";
 import SneakerDetails from "./pages/SneakerDetails/SneakerDetails";
+import Seo from "./seo/Seo";
 export type Theme = "light" | "dark";
 
 function initialTheme(): Theme {
+  if (typeof window === "undefined") return "light";
   try {
     const saved = localStorage.getItem("sneaker-spotter-theme");
     if (saved === "light" || saved === "dark") return saved;
@@ -34,6 +36,7 @@ function App() {
 
   return (
     <div className="app">
+      <Seo />
       <a className="skip-link" href="#main-content">Skip to content</a>
       <Nav theme={theme} onToggleTheme={() => setTheme((current) => current === "light" ? "dark" : "light")} />
       <main id="main-content" tabIndex={-1}><Routes>
