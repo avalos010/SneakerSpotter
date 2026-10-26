@@ -10,10 +10,11 @@
 .hero-cta span { font-size: 19px; margin-left: 12px; }
 .hero-visual { position: relative; min-width: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #d9c2b4, #b9d2d7); }
 .hero-visual--orbit { position: absolute; width: min(72%, 440px); aspect-ratio: 1; border: 1px solid rgba(255,255,255,.6); border-radius: 50%; box-shadow: 0 0 0 48px rgba(255,255,255,.08), 0 0 0 96px rgba(255,255,255,.06); }
-.hero-visual img { position: relative; z-index: 1; width: min(105%, 650px); object-fit: contain; filter: drop-shadow(0 25px 18px rgba(39,30,25,.2)); transform: rotate(-8deg); }
+.hero-visual img { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
+.hero-visual img.hero-visual--white-shoe { object-fit: contain; mix-blend-mode: normal; filter: drop-shadow(0 22px 18px rgba(0,0,0,.28)); }
 .hero-visual--label { position: absolute; top: 36px; right: 36px; z-index: 2; font-size: 10px; line-height: 1.5; letter-spacing: .14em; font-weight: 700; }
 .hero-visual--label span { font-size: 18px; }
-.hero-visual--caption { position: absolute; bottom: 30px; left: 34px; font-size: 10px; letter-spacing: .13em; font-weight: 700; }
+.hero-visual--caption { position: absolute; z-index: 2; bottom: 30px; left: 34px; font-size: 10px; letter-spacing: .13em; font-weight: 700; }
 .home-note { display: flex; justify-content: space-between; gap: 20px; padding: 20px 2px; color: #5d5550; font-size: 10px; font-weight: 700; letter-spacing: .13em; }
 .home-note b { color: #a76a51; margin: 0 7px; }
 @media (max-width: 767px) {
@@ -22,7 +23,6 @@
   .hero-copy h1 { font-size: clamp(52px, 14vw, 78px); margin: 22px 0 18px; }
   .hero-copy p { font-size: 15px; }
   .hero-visual { min-height: 280px; }
-  .hero-visual img { width: min(100%, 400px); }
   .hero-visual--label { top: 20px; right: 20px; }
   .hero-visual--caption { bottom: 18px; left: 20px; font-size: 9px; }
   .home-note { flex-direction: column; gap: 9px; line-height: 1.5; }

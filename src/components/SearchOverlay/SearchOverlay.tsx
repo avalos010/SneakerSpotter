@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import "./searchoverlay.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef } from "react";
 import type { KeyboardEvent, SubmitEvent } from "react";
 
 interface SearchOverlayProps {
@@ -11,7 +11,8 @@ interface SearchOverlayProps {
 function SearchOverlay({ closeOverlay }: SearchOverlayProps) {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
-  const dialogRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const titleId = useId();
   const handleSearch = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     const query = inputRef.current?.value.trim();
@@ -24,17 +25,18 @@ function SearchOverlay({ closeOverlay }: SearchOverlayProps) {
 
   useEffect(() => {
     const previousFocus = document.activeElement;
+    const dialog = dialogRef.current;
+    dialog?.showModal();
     inputRef.current?.focus();
     return () => {
+      if (dialog?.open) dialog.close();
       if (previousFocus instanceof HTMLElement && previousFocus.isConnected) previousFocus.focus();
     };
   }, []);
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Escape") closeOverlay();
+  const keepFocusInDialog = (event: KeyboardEvent<HTMLDialogElement>) => {
     if (event.key !== "Tab") return;
-    const controls = dialogRef.current?.querySelectorAll<HTMLElement>("button, input");
-    if (!controls?.length) return;
+    const controls = event.currentTarget.querySelectorAll<HTMLElement>("button:not([disabled]), input:not([disabled])");
     const first = controls[0];
     const last = controls[controls.length - 1];
     if (event.shiftKey && document.activeElement === first) {
@@ -47,14 +49,17 @@ function SearchOverlay({ closeOverlay }: SearchOverlayProps) {
   };
 
   return (
-    <div
+    <dialog
+      ref={dialogRef}
       className="search-overlay--container"
-      onKeyDown={handleKeyDown}
+      aria-labelledby={titleId}
+      onKeyDown={keepFocusInDialog}
+      onCancel={(event) => { event.preventDefault(); closeOverlay(); }}
     >
-      <div ref={dialogRef} className="search-overlay--content" role="dialog" aria-modal="true" aria-labelledby="search-title">
+      <div className="search-overlay--content">
         <button className="close-icon" type="button" aria-label="Close search" onClick={closeOverlay}><XMarkIcon aria-hidden="true" /></button>
         <span className="search-overlay--eyebrow">FIND YOUR NEXT PAIR</span>
-        <h2 id="search-title">What are you looking for?</h2>
+        <h2 id={titleId}>What are you looking for?</h2>
         <form onSubmit={handleSearch}>
           <input
             ref={inputRef}
@@ -66,7 +71,7 @@ function SearchOverlay({ closeOverlay }: SearchOverlayProps) {
           <button type="submit" className="btn">Search <span aria-hidden="true">↗</span></button>
         </form>
       </div>
-    </div>
+    </dialog>
   );
 }
 export default SearchOverlay;

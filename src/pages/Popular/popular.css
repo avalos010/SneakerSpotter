@@ -1,7 +1,7 @@
 .sneaker-wrapper { margin: 14px 0 32px; }
 .collection-heading { display: flex; justify-content: space-between; align-items: end; gap: 20px; padding: 34px 4px 28px; border-bottom: 1px solid rgba(36,31,27,.2); }
 .collection-heading .eyebrow { color: #815f50; }
-.collection-heading h2 { margin: 9px 0 5px; font-size: clamp(34px, 4vw, 52px); letter-spacing: -.05em; line-height: 1.12; overflow-wrap: anywhere; }
+.collection-heading h1 { margin: 9px 0 5px; font-size: clamp(34px, 4vw, 52px); letter-spacing: -.05em; line-height: 1.12; overflow-wrap: anywhere; }
 .collection-heading p { margin: 0; color: #625d58; font-size: 14px; }
 .collection-heading--aside { padding-bottom: 4px; color: #786c64; font-size: 10px; font-weight: 700; letter-spacing: .13em; white-space: nowrap; }
 .sneaker-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); width: 100%; gap: 18px; padding: 24px 0; }

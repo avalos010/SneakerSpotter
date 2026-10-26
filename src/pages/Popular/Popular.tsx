@@ -7,7 +7,7 @@ function Popular() {
 
   return (
     <div className="sneaker-wrapper" data-cy="sneakers-page">
-      <div className="collection-heading"><div><h2>Popular Items<span>.</span></h2><p>Explore the pairs people are looking for right now.</p></div><span className="collection-heading--aside">DISCOVER / 01</span></div>
+      <div className="collection-heading"><div><h1>Popular Items<span>.</span></h1><p>Explore the pairs people are looking for right now.</p></div><span className="collection-heading--aside">DISCOVER / 01</span></div>
       {isLoading && <CatalogSkeleton />}
       {isError && (
         <div role="alert">

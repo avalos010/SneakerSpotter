@@ -1,4 +1,5 @@
 .card-container--item { display: flex; flex-direction: column; min-width: 0; padding: 12px; background: #fff; border: 1px solid rgba(75,62,51,.08); box-shadow: 0 8px 24px rgba(61,49,39,.06); }
+.card-container--item:focus { outline: 2px solid #617e88; outline-offset: 3px; }
 .card-image { position: relative; min-width: 0; background: #f4f1ed; }
 .card-image img { display: block; width: 100%; height: 220px; object-fit: contain; mix-blend-mode: multiply; }
 .card-heading { padding: 20px 8px 16px; }

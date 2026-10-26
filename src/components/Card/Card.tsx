@@ -9,7 +9,7 @@ interface CardProps {
 
 function Card({ sneaker }: CardProps) {
   return (
-    <div className="card-container--item animate-slideInFade">
+    <div className="card-container--item animate-slideInFade" role="listitem" aria-label={sneaker.shoeName} tabIndex={-1}>
       <div className="card-image"><img
         data-cy="sneaker-image"
         width={300}

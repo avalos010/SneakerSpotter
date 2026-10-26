@@ -1,4 +1,6 @@
-.search-overlay--container { position: fixed; inset: 0; background: rgba(28,26,24,.72); z-index: 10; display: flex; justify-content: center; align-items: center; padding: 20px; }
+.search-overlay--container { position: fixed; inset: 0; width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: 20px; border: 0; background: transparent; }
+.search-overlay--container[open] { display: flex; justify-content: center; align-items: center; }
+.search-overlay--container::backdrop { background: rgba(28,26,24,.72); }
 .search-overlay--content { position: relative; width: min(100%, 670px); padding: clamp(30px, 6vw, 62px); background: #f7f3ee; }
 .search-overlay--eyebrow { color: #a56b50; font-size: 10px; font-weight: 700; letter-spacing: .14em; }
 .search-overlay--content h2 { margin: 12px 0 25px; font-size: clamp(26px, 4vw, 38px); letter-spacing: -.04em; }

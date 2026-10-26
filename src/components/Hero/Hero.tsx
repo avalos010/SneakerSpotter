@@ -1,8 +1,10 @@
-import hero from "../../assets/hero.png";
+import blackShoe from "../../assets/air-force-1-black.jpg";
+import whiteShoe from "../../assets/air-force-1-white.png";
+import type { Theme } from "../../App";
 import "./hero.css";
 import { Link } from "react-router-dom";
 
-function Hero() {
+function Hero({ theme }: { theme: Theme }) {
   return (
     <div className="home-page">
       <section className="inner-hero-container">
@@ -15,7 +17,7 @@ function Hero() {
         <div className="hero-visual">
           <div className="hero-visual--orbit" aria-hidden="true" />
           <span className="hero-visual--label">THE SEARCH<br />IS ON <span>↗</span></span>
-          <img src={hero} alt="Nike sneaker in black, white, and orange" />
+          <img className={theme === "dark" ? "hero-visual--white-shoe" : "hero-visual--black-shoe"} src={theme === "dark" ? whiteShoe : blackShoe} alt={`${theme === "dark" ? "White" : "Black"} Nike Air Force 1 sneaker`} />
           <span className="hero-visual--caption">FIND YOUR PAIR / COMPARE YOUR OPTIONS</span>
         </div>
       </section>

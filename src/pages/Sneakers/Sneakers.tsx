@@ -9,7 +9,7 @@ function Sneakers() {
 
   return (
     <div className="sneaker-wrapper">
-      <div className="collection-heading"><div><span className="eyebrow">EXPLORE THE COLLECTION</span><h2 className="animate-fadein">{brand?.toUpperCase()}<span>.</span></h2><p>Find your pair and compare available sellers.</p></div><span className="collection-heading--aside">SEARCH / 02</span></div>
+      <div className="collection-heading"><div><span className="eyebrow">EXPLORE THE COLLECTION</span><h1 className="animate-fadein">{brand?.toUpperCase()}<span>.</span></h1><p>Find your pair and compare available sellers.</p></div><span className="collection-heading--aside">SEARCH / 02</span></div>
       {isLoading && <CatalogSkeleton />}
       {isError && (
         <div role="alert">
